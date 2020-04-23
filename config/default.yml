@@ -101,4 +101,4 @@ config:
         - vscode
         - slack
       edge:
-        - spellcheck
+        - shellcheck
