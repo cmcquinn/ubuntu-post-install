@@ -1,7 +1,7 @@
 # Install Config
-api: 2
-name: Polaris
-author: Prasad T
+version: 1
+name: Ubuntu
+author: Cameron McQuinnn
 # Configuration
 config:
   # Enabled Tasks
@@ -18,30 +18,19 @@ config:
     # Whether to purge packages mentioned in config.purge key
     purge: true
     debs: true
-    pip2: true
     pip3: true
     binaries: true
-    snaps: yes
   # Repository Flags
   add_repo:
-    winehq: true
     docker: true
-    mendeley: false
-    googlecloud: true
-    gcsfuse: false
-    spotify: true
-    vscode: true
     skype: true
-    signal: true
-    insync: true
     google: true
-    ros: true
-    duo: false
   # Flags
   flags:
   # Simulate flag will never be overridden by remote config.
     purge_enabled: true
-    preserve_debs: false
+    preserve_debs: true
+
 
   # Packages to purge
   purge:
@@ -51,59 +40,65 @@ config:
     - gnome-mahjongg
   # PPA List
   ppa:
-    - ppa:yubico/stable
+    - ppa:dawidd0811/neofetch
+    - ppa:js-reynaud/kicad-dev-nightly
   # Install components
   # APT Packages, Python Modules, Debian packages
   install:
-    # Debian packages.deb files
+    # Debian packages:  .deb files
     # CSV format similar to lists
-    debian_packages:
-      - https://atom-installer.github.com/v1.35.1/atom-amd64.deb,Atom-Editor.deb
-    # Static Binaries which will be placed in /usr/local/bin
-    # minikube, docker-compose, etc.
-    # Follows same pattern as Debian packages
-    # Name to be saved is second field
-    binaries:
-      - https://github.com/kubernetes/kompose/releases/download/v1.19.0/kompose-linux-amd64,kompose
-    snaps:
-      normal:
-        - htop
-      classic:
-        - vscode
-    python2:
-      - future
-    python3:
-      - coloredlogs
     apt:
       # Admin related Stuff
       administration:
+        - dconf-editor
         - gparted
-        - synaptic
-      # Security Related Stuff
-      security:
-        - gufw
-        - gnupg2
-      # Productivity & Office Tools.
-      productivity:
-        - gedit
       # Multimedia Tools. Photo Editors Converting tools, plex etc.
       multimedia:
+        - audacity
         - vlc
-        - cheese
+        - gimp
       # Tools related to development.
       development:
         - curl
-        - make
+        - git
+        - multistrap
+        - build-essential
+        - ruby-full
+        - clang-format
+        - bison
+        - flex
+        - openjdk-11-jdk-headless
+        - openjdk-11-jre
+        - pkg-config-arm-linux-gnueabihf
+        - gcc-10-arm-linux-gnueabihf
+        - pkg-config
+
       # Everything Else
-      # Which is conditional
       other:
-        - screenfetch
+        - u-boot-tools
+        - qemu-user-static
+        - plank
+        - meld
+        - chrome-gnome-shell
+        - gnome-tweak-tool
+
       # Packages supplied by external repositories & PPAs
       # Dont Mix packages provided by distribution and PPAs
       # Sometimes external repos and ppas fail, so better isolate it.
       external:
         - google-chrome-stable
-        - spotify-client
-        - code
-        - google-cloud-sdk
         - docker-ce
+        - kicad-nightly
+        - kicad-nightly-footprints
+        - kicad-nightly-libraries
+        - kicad-nightly-symbols
+        - kicad-nightly-packages3d
+        - kicad-nightly-templates
+    debian-_packages:
+      - https://zoom.us/client/latest/zoom_amd64.deb,zoom_amd64.deb
+    snaps:
+      classic:
+        - vscode
+        - slack
+      edge:
+        - spellcheck
