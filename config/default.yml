@@ -22,7 +22,6 @@ config:
     binaries: true
   # Repository Flags
   add_repo:
-    docker: true
     skype: true
     google: true
   # Flags
@@ -72,6 +71,7 @@ config:
         - pkg-config-arm-linux-gnueabihf
         - gcc-10-arm-linux-gnueabihf
         - pkg-config
+	      - docker.io
 
       # Everything Else
       other:
@@ -87,7 +87,6 @@ config:
       # Sometimes external repos and ppas fail, so better isolate it.
       external:
         - google-chrome-stable
-        - docker-ce
         - kicad-nightly
         - kicad-nightly-footprints
         - kicad-nightly-libraries
