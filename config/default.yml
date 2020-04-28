@@ -16,10 +16,9 @@ config:
     # APT Packages
     apt: true
     # Whether to purge packages mentioned in config.purge key
-    purge: true
+    purge: false
     debs: true
-    pip3: true
-    binaries: true
+    snaps: true
   # Repository Flags
   add_repo:
     skype: true
@@ -65,6 +64,8 @@ config:
         - gcc-10-arm-linux-gnueabihf
         - pkg-config
 	      - docker.io
+        - shellcheck
+        - python3-pip
 
       # Everything Else
       other:
@@ -82,10 +83,11 @@ config:
       # Sometimes external repos and ppas fail, so better isolate it.
       external:
         - google-chrome-stable
+        - neofetch
+        - skype
+        - code
     debian-_packages:
       - https://zoom.us/client/latest/zoom_amd64.deb,zoom_amd64.deb
     snaps:
       classic:
         - slack
-      edge:
-        - shellcheck
