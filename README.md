@@ -33,7 +33,7 @@ If you wish to use master branch pass `--master` or `-m` as an argument. Eg: `wg
 If you already have git on your system, you can use,
 
 ```console
-git clone https://github.com/tprasadtp/ubuntu-post-install.git && cd ubuntu-post-install
+git clone https://github.com/cmcquinn/ubuntu-post-install.git && cd ubuntu-post-install
 ```
 
 If you already have cloned the repo, you can use `git pull` to get the latest changes.
@@ -185,8 +185,8 @@ See [Contributing and forks](/CONTRIBUTING.md)
 [known-issues]: https://ae.prasadt.com/faq/errors/
 [changelogs]: https://ae.prasadt.com/changelogs/
 
-[travis-link]: https://travis-ci.org/tprasadtp/ubuntu-post-install
-[travis-badge]: https://travis-ci.org/tprasadtp/ubuntu-post-install.svg?branch=master
+[travis-link]: https://travis-ci.org/cmcquinn/ubuntu-post-install
+[travis-badge]: https://travis-ci.org/cmcquinn/ubuntu-post-install.svg?branch=master
 [netlify-badge]: https://img.shields.io/netlify/110327c5-b5f2-42e3-b5ef-5d5661c94187
 [netlify]: https://app.netlify.com/sites/ubuntu-post-install/deploys
 
@@ -200,4 +200,4 @@ See [Contributing and forks](/CONTRIBUTING.md)
 [deployed]: https://img.shields.io/badge/dynamic/json.svg?label=deployed&color=success&style=flat&prefix=%23&url=https://ae.prasadt.com/commit.json&query=build.number
 
 [gpl-badge]: https://img.shields.io/badge/license-GPLv3-green
-[license]: https://github.com/tprasadtp/ubuntu-post-install/blob/master/LICENSE
+[license]: https://github.com/cmcquinn/ubuntu-post-install/blob/master/LICENSE
