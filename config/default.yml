@@ -24,12 +24,12 @@ config:
   add_repo:
     skype: true
     google: true
+    vscode: true
   # Flags
   flags:
   # Simulate flag will never be overridden by remote config.
     purge_enabled: true
     preserve_debs: true
-
 
   # Packages to purge
   purge:
@@ -40,7 +40,7 @@ config:
   # PPA List
   ppa:
     - ppa:dawidd0811/neofetch
-    - ppa:js-reynaud/kicad-dev-nightly
+    - ppa:js-reynaud/kicad-5.1
   # Install components
   # APT Packages, Python Modules, Debian packages
   install:
@@ -87,17 +87,12 @@ config:
       # Sometimes external repos and ppas fail, so better isolate it.
       external:
         - google-chrome-stable
-        - kicad-nightly
-        - kicad-nightly-footprints
-        - kicad-nightly-libraries
-        - kicad-nightly-symbols
-        - kicad-nightly-packages3d
-        - kicad-nightly-templates
+        - kicad
+        - kicad-libraries
     debian-_packages:
       - https://zoom.us/client/latest/zoom_amd64.deb,zoom_amd64.deb
     snaps:
       classic:
-        - vscode
         - slack
       edge:
         - shellcheck
