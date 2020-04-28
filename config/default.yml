@@ -31,16 +31,9 @@ config:
     purge_enabled: true
     preserve_debs: true
 
-  # Packages to purge
-  purge:
-    - gnome-mines
-    - gnome-sudoku
-    - aisleriot
-    - gnome-mahjongg
   # PPA List
   ppa:
     - ppa:dawidd0811/neofetch
-    - ppa:js-reynaud/kicad-5.1
   # Install components
   # APT Packages, Python Modules, Debian packages
   install:
@@ -81,14 +74,14 @@ config:
         - meld
         - chrome-gnome-shell
         - gnome-tweak-tool
+        - kicad
+        - kicad-libraries
 
       # Packages supplied by external repositories & PPAs
       # Dont Mix packages provided by distribution and PPAs
       # Sometimes external repos and ppas fail, so better isolate it.
       external:
         - google-chrome-stable
-        - kicad
-        - kicad-libraries
     debian-_packages:
       - https://zoom.us/client/latest/zoom_amd64.deb,zoom_amd64.deb
     snaps:
