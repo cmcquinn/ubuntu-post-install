@@ -43,9 +43,6 @@ jobs:
   - env: TEST_ENV="Bionic-Host"
     script: ./tests/test-distro.sh "ubuntu" "host"
 
-  - env: TEST_ENV="Debian11-Docker"
-    script: ./tests/test-distro.sh "debian" "bullseye" "default.yml" "true"
-
   - env:
     - TEST_ENV="Bionic-Host-ARM64"
     - TRAVIS_ARCH="arm64"
@@ -62,7 +59,7 @@ jobs:
     script: ./tests/test-distro.sh "debian" "buster"
 
   - stage: Pre-Release-Builds
-    env: TEST_ENV="Ubuntu-Pre-Release-Docker"
-    script: ./tests/test-distro.sh "ubuntu" "focal" "pre-release.yml" "true"
+    env: TEST_ENV="Debian11-Docker"
+    script: ./tests/test-distro.sh "debian" "bullseye" "pre-release.yml" "true"
 notifications:
   email: false
