@@ -325,10 +325,10 @@ function _init_script_variables()
 
 
   #-------------------------- Release codenames --------------------------------------
-  readonly code_name_latest_release="eoan"
-  readonly codename_previous_release="disco"
-  readonly codename_upcoming_release="focal"
-  readonly codename_lts_fallback="bionic"
+  readonly code_name_latest_release="focal"
+  readonly codename_previous_release="eoan"
+  readonly codename_upcoming_release="groovy"
+  readonly codename_lts_fallback="focal"
   readonly code_name_latest_debian_release="buster"
   readonly codename_upcoming_debian_release="bullseye"
 
@@ -657,7 +657,7 @@ function _fix_ubuntu_derivatives()
                                             code_name="bionic";distro_name="ubuntu"
                                             _log_success "${_elementary} Changed codename to $code_name"
                                             ;;
-      xenial | bionic )                     readonly bool_config_partner_repo="true"
+      xenial | bionic | focal )                     readonly bool_config_partner_repo="true"
                                             _log_and_show "${_info} This is an LTS release of Ubuntu"
                                             _log_success "${_derivatives} Keeping the codename as: $code_name."
                                             ;;
@@ -667,13 +667,6 @@ function _fix_ubuntu_derivatives()
                                             _log_and_show "${_info} This is 19.10 eoan."
                                             if [[ $bool_fix_repo_not_available_for_latest != "true" ]] && [[ $bool_fix_lts != "true"  ]] ; then _log_notice "${_notice} If your repos are not yet supported, use --fix option"; fi
                                             _log_success "${_derivatives} Keeping the codename as: $code_name."
-                                            ;;
-      focal )                               readonly bool_config_partner_repo="true"
-                                            set_magenta;
-                                            _log_and_show "${_pre_release} This is Ubuntu 20.04 Focal"
-                                            _log_and_show "${_pre_release} Please use --pre-release flag if you cannot add repos yet. There's no fix for PPAs."
-                                            _log_and_show "${_warn} This is a pre-release of Ubuntu, which is in early stages of development. Use with caution!"
-                                            _log_warn "${_warn} Packages and PPAs might not work with this release!"
                                             ;;
       stretch | jessie | buster )           bool_is_debian="true";
                                             _log_notice "${_notice} This is Debian. PPAs are disabled."
