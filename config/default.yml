@@ -77,6 +77,7 @@ config:
         - gnome-tweak-tool
         - kicad
         - kicad-libraries
+        - gnome-shell-extension-prefs
 
       # Packages supplied by external repositories & PPAs
       # Dont Mix packages provided by distribution and PPAs
