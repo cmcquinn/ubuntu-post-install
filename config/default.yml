@@ -59,7 +59,7 @@ config:
         - openjdk-11-jdk-headless
         - openjdk-11-jre
         - pkg-config-arm-linux-gnueabihf
-        - gcc-10-arm-linux-gnueabihf
+        - gcc-arm-linux-gnueabihf
         - pkg-config
 	      - docker.io
         - shellcheck
