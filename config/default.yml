@@ -56,8 +56,7 @@ config:
         - clang-format
         - bison
         - flex
-        - openjdk-11-jdk-headless
-        - openjdk-11-jre
+        - default-jdk
         - pkg-config-arm-linux-gnueabihf
         - gcc-arm-linux-gnueabihf
         - pkg-config
