@@ -18,13 +18,13 @@ Alternatively you can build the docker image yourself.
 ```console
 $ export distro="ubuntu"
 $ export release="bionic"
-$ docker build -t cmcquinn:"${distro}-${release}" \
+$ docker build -t ae:"${distro}-${release}" \
     --build-arg DISTRO="${distro}" \
     --build-arg CODE_NAME="${release}"  \
     ./dockerfiles/tests
 $ docker run -it -v $(pwd)/after-effects:/shared/after-effects:ro \
     -v $(pwd)/config/:/shared/config:ro \
-    cmcquinn:ubuntu-bionic
+    ae:ubuntu-bionic
 root@a9f6bf377494:/shared# DEBUG=1 ./after-effects -c config/default.yml -s -H
 [    Checking   ] Permissions...
 [     DEBUG     ] Initialize logging

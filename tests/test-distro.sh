@@ -57,7 +57,7 @@ function main()
 
   else
     echo "Building $distro:$release Docker Image"
-    docker build -t cmcquinn:"${distro}-${release}" \
+    docker build -t ae:"${distro}-${release}" \
       --build-arg DISTRO="${distro}" \
       --build-arg CODE_NAME="${release}"  \
       ./dockerfiles/tests
@@ -69,7 +69,7 @@ function main()
       -e DEBUG \
       --hostname="${TEST_ENV}" \
       -v "$(pwd)":/shared \
-      cmcquinn:"${distro}-${release}" \
+      ae:"${distro}-${release}" \
       ./after-effects \
       --fix \
       --simulate \
@@ -82,7 +82,7 @@ function main()
       -e DEBUG \
       --hostname="${TEST_ENV}" \
       -v "$(pwd)":/shared \
-      cmcquinn:"${distro}-${release}" \
+      ae:"${distro}-${release}" \
       ./after-effects \
       --simulate \
       --autopilot \
