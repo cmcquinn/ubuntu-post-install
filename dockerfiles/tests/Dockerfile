@@ -15,5 +15,6 @@ RUN apt-get -qq update \
       iputils-ping \
       procps \
       ca-certificates \
+      git \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/*

@@ -43,54 +43,55 @@ function _init_printf_variables()
   #Initialize printf variables
 
     #================ Because I care about Beauty of Output Logs =================
-    readonly           _repo="[    Add-Repo   ]"
-    readonly            _ppa="[      PPA      ]"
-    readonly          _oh_no="[     Oh No!    ]"
-    readonly     _installing="[   Installing  ]"
-    readonly      _installed="[   Installed   ]"
-    # readonly       _removing="[    Removing   ]"
-    readonly        _removed="[    Removed    ]"
-    readonly       _deleting="[    Deleting   ]"
-    readonly      _linuxmint="[  Linux - Mint ]"
-    readonly     _elementary="[ Elementary-OS ]"
-    readonly          _purge="[     Purge     ]"
-    readonly          _error="[     Error!    ]"
-    readonly         _update="[     Update    ]"
-    readonly        _upgrade="[    Upgrade    ]"
-    readonly    _derivatives="[  Derivatives  ]"
-    readonly      _conflicts="[   Conflicts   ]"
-    readonly         _notice="[    Notice     ]"
-    readonly            _deb="[   Debian-PKG  ]"
-    readonly           _info="[     Info      ]"
-    readonly       _simulate="[   Simulating  ]"
-    readonly       _fix_repo="[      Fix      ]"
-    readonly           _warn="[    Warning    ]"
-    readonly         _whoops="[     Oops!     ]"
-    readonly    _pre_release="[  Pre Release  ]"
-    # readonly    _new_release="[  New Release  ]"
-    readonly        _version="[    Version    ]"
-    readonly       _checking="[    Checking   ]"
-    readonly            _eol="[      EOL      ]"
-    readonly        _running="[    Running    ]"
-    readonly      _autopilot="[   Autopilot   ]"
-    readonly            _api="[      API      ]"
-    readonly          _debug="[     DEBUG     ]"
-    readonly       _internal="[    INTERNAL   ]"
-    readonly          _trace="[      TRACE    ]"
-    readonly       _ppa_logs="[    PPA-Logs   ]"
-    readonly       _apt_logs="[    APT-Logs   ]"
-    readonly      _dpkg_logs="[    PKG-Logs   ]"
-    readonly   _apt_key_logs="[  APT-Key-Logs ]"
-    readonly       _pip_logs="[    PIP-Logs   ]"
-    readonly            _cfg="[     Config    ]"
-    readonly         _rtasks="[    R-Tasks    ]"
-    readonly             _ci="[      C-I      ]"
-    readonly          _table="[  ---Table---  ]"
-    readonly          _array="[   PKG Array   ]"
-    readonly            _apt="[  APT-Packges  ]"
-    readonly           _list="[  Cleaned List ]"
-    readonly           _snap="[    Snap PKG   ]"
-    readonly        _success="[    Success    ]"
+    readonly                  _repo="[    Add-Repo   ]"
+    readonly                   _ppa="[      PPA      ]"
+    readonly                 _oh_no="[     Oh No!    ]"
+    readonly            _installing="[   Installing  ]"
+    readonly             _installed="[   Installed   ]"
+    # readonly              _removing="[    Removing   ]"
+    readonly               _removed="[    Removed    ]"
+    readonly              _deleting="[    Deleting   ]"
+    readonly             _linuxmint="[  Linux - Mint ]"
+    readonly            _elementary="[ Elementary-OS ]"
+    readonly                 _purge="[     Purge     ]"
+    readonly                 _error="[     Error!    ]"
+    readonly                _update="[     Update    ]"
+    readonly               _upgrade="[    Upgrade    ]"
+    readonly           _derivatives="[  Derivatives  ]"
+    readonly             _conflicts="[   Conflicts   ]"
+    readonly                _notice="[    Notice     ]"
+    readonly                   _deb="[   Debian-PKG  ]"
+    readonly                  _info="[     Info      ]"
+    readonly              _simulate="[   Simulating  ]"
+    readonly              _fix_repo="[      Fix      ]"
+    readonly                  _warn="[    Warning    ]"
+    readonly                _whoops="[     Oops!     ]"
+    readonly           _pre_release="[  Pre Release  ]"
+    # readonly           _new_release="[  New Release  ]"
+    readonly               _version="[    Version    ]"
+    readonly              _checking="[    Checking   ]"
+    readonly                   _eol="[      EOL      ]"
+    readonly               _running="[    Running    ]"
+    readonly             _autopilot="[   Autopilot   ]"
+    readonly                   _api="[      API      ]"
+    readonly                 _debug="[     DEBUG     ]"
+    readonly              _internal="[    INTERNAL   ]"
+    readonly                 _trace="[      TRACE    ]"
+    readonly              _ppa_logs="[    PPA-Logs   ]"
+    readonly              _apt_logs="[    APT-Logs   ]"
+    readonly             _dpkg_logs="[    PKG-Logs   ]"
+    readonly          _apt_key_logs="[  APT-Key-Logs ]"
+    readonly              _pip_logs="[    PIP-Logs   ]"
+    readonly                   _cfg="[     Config    ]"
+    readonly                _rtasks="[    R-Tasks    ]"
+    readonly                    _ci="[      C-I      ]"
+    readonly                 _table="[  ---Table---  ]"
+    readonly                 _array="[   PKG Array   ]"
+    readonly                   _apt="[  APT-Packges  ]"
+    readonly                  _list="[  Cleaned List ]"
+    readonly                  _snap="[    Snap PKG   ]"
+    readonly _gnome_shell_extension="[  GNOME Shell  ]"
+    readonly               _success="[    Success    ]"
     #readonly           _falg="[     Flag      ]"
 
     #colors for display
@@ -1094,77 +1095,81 @@ function _set_yaml_config()
     # snap Packages
     _check_bool "ae_task_snaps" "${config__tasks__snaps[0]}"
 
+    # Manage GNOME Shell Extensions
+    _check_bool "ae_task_manage_gnome_shell_extensions" "${config__tasks__gnome_shell_extensions[0]}"
 
     if [[ ${bool_hide_config} != "true" ]] && [[ $AE_DEBUG -lt 1 ]]; then
       _line_fill
-      printf "${_table} %-20s | %-10s |\n" "Repository" "Enabled"
-      printf "${_cfg} %-20s | %-10s |\n" "Docker CE" "$add_docker_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Wine-HQ" "$add_winehq_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Google Cloud SDK" "$add_googlecloud_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "GCSFUSE" "$add_gcsfuse_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Spotify" "$add_spotify_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Skype" "$add_skype_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Visual Studio Code" "$add_vscode_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Insync" "$add_insync_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Signal for Desktop" "$add_signal_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "Google Chrome, Earth" "$add_google_repo"
-      printf "${_cfg} %-20s | %-10s |\n" "ROS" "$add_ros_repo"
+      printf "${_table} %-25s | %-10s |\n" "Repository" "Enabled"
+      printf "${_cfg} %-25s | %-10s |\n" "Docker CE" "$add_docker_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Wine-HQ" "$add_winehq_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Google Cloud SDK" "$add_googlecloud_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "GCSFUSE" "$add_gcsfuse_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Spotify" "$add_spotify_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Skype" "$add_skype_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Visual Studio Code" "$add_vscode_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Insync" "$add_insync_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Signal for Desktop" "$add_signal_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "Google Chrome, Earth" "$add_google_repo"
+      printf "${_cfg} %-25s | %-10s |\n" "ROS" "$add_ros_repo"
       _line_fill;
-      printf "${_table} %-20s | %-10s |\n" "Other Flags" "Config"
+      printf "${_table} %-25s | %-10s |\n" "Other Flags" "Config"
       _line_fill;
-      printf "${_cfg} %-20s | %-10s |\n" "Purge Enabled" "$bool_purge_not_required_pkgs"
-      printf "${_cfg} %-20s | %-10s |\n" "Keep DEBs/APT cache" "$bool_preserve_debs"
-      printf "${_cfg} %-20s | %-10s |\n" "Uni-Freiburg Mirror" "$bool_use_uni_freiburg_mirror"
+      printf "${_cfg} %-25s | %-10s |\n" "Purge Enabled" "$bool_purge_not_required_pkgs"
+      printf "${_cfg} %-25s | %-10s |\n" "Keep DEBs/APT cache" "$bool_preserve_debs"
+      printf "${_cfg} %-25s | %-10s |\n" "Uni-Freiburg Mirror" "$bool_use_uni_freiburg_mirror"
       _line_fill;
 
       # Only display tasks column when autopilot = true is set.
       if [ "$AUTOPILOT" == "true" ]; then
-        printf "${_table} %-20s | %-10s |\n" "Task" "Config"
+        printf "${_table} %-25s | %-10s |\n" "Task" "Config"
         _line_fill;
-        printf "${_rtasks} %-20s | %-10s |\n" "Update" "$ae_task_update"
-        printf "${_rtasks} %-20s | %-10s |\n" "Upgrade" "$ae_task_upgrade"
-        printf "${_rtasks} %-20s | %-10s |\n" "Add Repos" "$ae_task_repo"
-        printf "${_rtasks} %-20s | %-10s |\n" "Add PPA" "$ae_task_ppa"
-        printf "${_rtasks} %-20s | %-10s |\n" "APT packages" "$ae_task_apt"
-        printf "${_rtasks} %-20s | %-10s |\n" "DEB packages" "$ae_task_debs"
-        printf "${_rtasks} %-20s | %-10s |\n" "Purge packages" "$ae_task_purge"
-        printf "${_rtasks} %-20s | %-10s |\n" "Python 2 Modules" "$ae_task_pip2"
-        printf "${_rtasks} %-20s | %-10s |\n" "Python 3 Modules" "$ae_task_pip3"
-        printf "${_rtasks} %-20s | %-10s |\n" "Static Binaries" "$ae_task_bin"
-        printf "${_rtasks} %-20s | %-10s |\n" "Snap Packages" "$ae_task_snaps"
+        printf "${_rtasks} %-25s | %-10s |\n" "Update" "$ae_task_update"
+        printf "${_rtasks} %-25s | %-10s |\n" "Upgrade" "$ae_task_upgrade"
+        printf "${_rtasks} %-25s | %-10s |\n" "Add Repos" "$ae_task_repo"
+        printf "${_rtasks} %-25s | %-10s |\n" "Add PPA" "$ae_task_ppa"
+        printf "${_rtasks} %-25s | %-10s |\n" "APT packages" "$ae_task_apt"
+        printf "${_rtasks} %-25s | %-10s |\n" "DEB packages" "$ae_task_debs"
+        printf "${_rtasks} %-25s | %-10s |\n" "Purge packages" "$ae_task_purge"
+        printf "${_rtasks} %-25s | %-10s |\n" "Python 2 Modules" "$ae_task_pip2"
+        printf "${_rtasks} %-25s | %-10s |\n" "Python 3 Modules" "$ae_task_pip3"
+        printf "${_rtasks} %-25s | %-10s |\n" "Static Binaries" "$ae_task_bin"
+        printf "${_rtasks} %-25s | %-10s |\n" "Snap Packages" "$ae_task_snaps"
+        printf "${_rtasks} %-25s | %-10s |\n" "GNOME Shell Extensions" "$ae_task_manage_gnome_shell_extensions"
         _line_fill;
       fi
     else
       _log_and_show "${_cfg} Configuration data is hidden if not in debug mode"
       _log_debug "-------- REPO CONFIG ----------"
-      _log_debug "Docker CE           : $add_docker_repo"
-      _log_debug "Wine-HQ             : $add_winehq_repo"
-      _log_debug "Google Cloud SDK    : $add_googlecloud_repo"
-      _log_debug "GCSFUSE             : $add_gcsfuse_repo"
-      _log_debug "Spotify             : $add_spotify_repo"
-      _log_debug "Skype               : $add_skype_repo"
-      _log_debug "Visual Studio Code  : $add_vscode_repo"
-      _log_debug "Insync              : $add_insync_repo"
-      _log_debug "Signal for Desktop  : $add_signal_repo"
-      _log_debug "Google Chrome,Earth : $add_google_repo"
-      _log_debug "ROS                 : $add_ros_repo"
+      _log_debug "Docker CE                : $add_docker_repo"
+      _log_debug "Wine-HQ                  : $add_winehq_repo"
+      _log_debug "Google Cloud SDK         : $add_googlecloud_repo"
+      _log_debug "GCSFUSE                  : $add_gcsfuse_repo"
+      _log_debug "Spotify                  : $add_spotify_repo"
+      _log_debug "Skype                    : $add_skype_repo"
+      _log_debug "Visual Studio Code       : $add_vscode_repo"
+      _log_debug "Insync                   : $add_insync_repo"
+      _log_debug "Signal for Desktop       : $add_signal_repo"
+      _log_debug "Google Chrome,Earth      : $add_google_repo"
+      _log_debug "ROS                      : $add_ros_repo"
       _log_debug "-------- FLAG CONFIG ----------"
-      _log_debug "Purge Enabled       : $bool_purge_not_required_pkgs"
-      _log_debug "Keep DEBs/APT cache : $bool_preserve_debs"
-      _log_debug "Use Uni Mirror      : $bool_use_uni_freiburg_mirror"
+      _log_debug "Purge Enabled            : $bool_purge_not_required_pkgs"
+      _log_debug "Keep DEBs/APT cache      : $bool_preserve_debs"
+      _log_debug "Use Uni Mirror           : $bool_use_uni_freiburg_mirror"
       _log_debug "-------- TASK CONFIG ----------"
       _log_debug " AUTOPILOT IS ${AUTOPILOT}"
-      _log_debug "Update              : $ae_task_update"
-      _log_debug "Upgrade             : $ae_task_upgrade"
-      _log_debug "Add Repos           : $ae_task_repo"
-      _log_debug "Add PPA             : $ae_task_ppa"
-      _log_debug "APT packages        : $ae_task_apt"
-      _log_debug "DEB packages        : $ae_task_debs"
-      _log_debug "Purge packages      : $ae_task_purge"
-      _log_debug "Python 2 Modules    : $ae_task_pip2"
-      _log_debug "Python 3 Modules    : $ae_task_pip3"
-      _log_debug "Static Binaries     : $ae_task_bin"
-      _log_debug "Snap Packages       : $ae_task_snaps"
+      _log_debug "Update                   : $ae_task_update"
+      _log_debug "Upgrade                  : $ae_task_upgrade"
+      _log_debug "Add Repos                : $ae_task_repo"
+      _log_debug "Add PPA                  : $ae_task_ppa"
+      _log_debug "APT packages             : $ae_task_apt"
+      _log_debug "DEB packages             : $ae_task_debs"
+      _log_debug "Purge packages           : $ae_task_purge"
+      _log_debug "Python 2 Modules         : $ae_task_pip2"
+      _log_debug "Python 3 Modules         : $ae_task_pip3"
+      _log_debug "Static Binaries          : $ae_task_bin"
+      _log_debug "Snap Packages            : $ae_task_snaps"
+      _log_debug "GNOME Shell Extensions   : $ae_task_manage_gnome_shell_extensions"
       _log_debug "--------  END CONFIG ----------"
     fi
     #################################################################################
@@ -1250,6 +1255,12 @@ function _set_yaml_config()
     declare -gar parsed_snap_normal_packages=("${config__install__snaps__normal_[@]}")
     declare -gar parsed_snap_classic_packages=("${config__install__snaps__classic_[@]}")
     declare -gar parsed_snap_edge_packages=("${config__install__snaps__edge_[@]}")
+
+    #--------------------------------------------------------------------------------
+    #                             GNOME Shell Extensions
+    #--------------------------------------------------------------------------------
+    declare -gar parsed_gnome_shell_extensions_install=("${config__gnome_shell_extensions__install_[@]}")
+    declare -gar parsed_gnome_shell_extensions_disable=("${config__gnome_shell_extensions__disable_[@]}")
  fi
 
   {
@@ -2396,15 +2407,15 @@ function install_debs ()
       continue
     }
 
-   _log_and_show "${_deb} Installing - $deb_name..."
-   # Check if simulate is true
-   if [ "$simulate_apt_install" == "true" ]; then
-     _log_warn "${_simulate} $deb_name Installation!!"
-     dpkg -i --dry-run "$deb_name" |& _add_timestamp_to_logs "${_dpkg_logs}"
+    _log_and_show "${_deb} Installing - $deb_name..."
+    # Check if simulate is true
+    if [ "$simulate_apt_install" == "true" ]; then
+      _log_warn "${_simulate} $deb_name Installation!!"
+      dpkg -i --dry-run "$deb_name" |& _add_timestamp_to_logs "${_dpkg_logs}"
 
-     _log_debug "Installing missing packages..."
-     apt-get -q -y install -f |& _add_timestamp_to_logs "${_apt_logs}"
-     exit_status=$?
+      _log_debug "Installing missing packages..."
+      apt-get -q -y install -f |& _add_timestamp_to_logs "${_apt_logs}"
+      exit_status=$?
     else
       dpkg -i "$deb_name" |& _add_timestamp_to_logs "${_dpkg_logs}"
       _log_debug "Installing missing packages..."
@@ -2413,11 +2424,10 @@ function install_debs ()
     fi
 
     # shellcheck disable=SC2181
-     if [ "$exit_status" = "0" ]; then
+    if [ "$exit_status" = "0" ]; then
       _log_success "${_deb} Installed $deb_name successfully."
-     else
+    else
       _log_warn "${_oh_no} Some error occurred during downloading and installing $index."
-      $?="0"
     fi
     # Delete DEBs
     if [ "$bool_preserve_debs" == "false" ];then
@@ -2551,6 +2561,110 @@ function install_snaps()
 
 }
 
+function _install_gnome_shell_extensions()
+{
+  # Function to get the GNOME Shell Extensions specified in the config file
+  # The entries in the config file have the following format:
+  # github-url,extension-UUID
+
+  local index extension_url line extension_uuid release tag
+  local exit_status
+  _log_debug "Option: Install GNOME Shell Extensions, Function name: install_gnome_shell_extensions"
+  for index in "${parsed_gnome_shell_extensions_install[@]}"; do
+    _log_debug "$index"
+    extension_url=$(echo "$index" | cut -d ',' -f1 )
+    extension_uuid=$(echo "$index" | cut -d ',' -f2 )
+    _log_debug "Extension url: $extension_url"
+    _log_debug "Extension uuid: $extension_uuid"
+
+    if [[ -z $extension_url ]] || [[ -z $extension_uuid ]]; then
+      _log_error "${_error} Malformed entry either URL or uuid is empty!"
+      continue
+    fi
+
+    _log_and_show "${_gnome_shell_extension} Downloading $extension_uuid"
+    {
+      git clone "$extension_url" "$extension_uuid" >> "$log_file" 2>&1
+    } ||
+    {
+      _log_error "${_error} Downloading $extension_uuid failed."
+      continue
+    }
+
+    _log_and_show "${_gnome_shell_extension} Installing - $extension_uuid..."
+    # Check if simulate is true
+    if [ "$simulate_apt_install" == "true" ]; then
+      _log_warn "${_simulate} Skipping Installation!!"
+      exit_status=0
+    else
+      cd "$extension_uuid"
+      git fetch --tags
+      tag=$(git rev-list --tags --max-count=1)
+      release=$(git describe --tags $tag)
+      _log_debug "${_gnome_shell_extension} Installing $extension_uuid version $release"
+      git checkout $release
+      cp --recursive $extension_uuid $HOME/.local/share/gnome-shell/extensions/$extension_uuid
+      gnome-shell-extension-tool -e $extension_uuid
+      exit_status=$?
+    fi
+
+    # shellcheck disable=SC2181
+    if [ "$exit_status" = "0" ]; then
+      _log_success "${_gnome_shell_extension} Installed $extension_uuid successfully."
+    else
+      _log_warn "${_oh_no} Some error occurred during downloading and installing $extension_uuid."
+    fi
+    # Delete downloaded extensions
+    cd ${dir}
+    _log_and_show "${_gnome_shell_extension} Deleting downloaded extensions"
+    (
+      rm -rf "${dir}/${extension_uuid}" >> "$log_file"
+    )
+  done
+
+  _line_fill >> "$log_file"
+}
+
+
+function _disable_gnome_shell_extensions()
+{
+  # Function to disable the GNOME Shell Extensions specified in the config file
+
+  local index
+  local exit_status
+  _log_debug "Option: Disable GNOME Shell Extensions, Function name: disable_gnome_shell_extensions"
+  for index in "${parsed_gnome_shell_extensions_disable[@]}"; do
+    _log_debug "$index"
+    _log_and_show "${_gnome_shell_extension} Disabling $index"
+
+    # Check if simulate is true
+    if [ "$simulate_apt_install" == "true" ]; then
+      _log_warn "${_simulate} Skipping Disable!!"
+      exit_status=0
+    else
+      gnome-shell-extension-tool -d "$index"
+      exit_status=$?
+    fi
+
+    # shellcheck disable=SC2181
+    if [ "$exit_status" = "0" ]; then
+      _log_success "${_gnome_shell_extension} Disabled $extension_uuid successfully."
+    else
+      _log_warn "${_oh_no} Some error occurred while disabling $index."
+    fi
+  done
+
+  _line_fill >> "$log_file"
+}
+
+
+function manage_gnome_shell_extensions()
+{
+  _install_gnome_shell_extensions
+  _disable_gnome_shell_extensions
+}
+
+
 function _autopilot_check_task_flag_and_run()
 {
   # checks flags set for each task/function and runs it
@@ -2607,21 +2721,22 @@ function _process_menu
       --menu "\nWhat would you like me to do?\nCheck the logs for details and errors." \
       --cancel-button "Quit" \
       $LINES $COLUMNS $(( LINES - 12 )) \
-      update     'Update Repository Metadata' \
-      upgrade    'Upgrade Packages' \
-      all        'APT+PIP+PPA+REPO+DEB=All' \
-      repo       'Add Repositories' \
-      ppas       'Add PPAs' \
-      purge      'Purge not required packages' \
-      apps       'Install Packages' \
-      debs       'Install DEB packages' \
-      pip2       'Install Python 2 packages via pip' \
-      pip3       'Install Python 3 packages via pip3' \
-      bin        'Download & Install Static Binaries' \
-      repo_rst   'Reset Repositories for cleanup' \
-      ppa_rst    'Purge PPAs' \
-      snaps      'Install snap packages' \
-      logdel     'Delete Script logs' \
+      update                   'Update Repository Metadata' \
+      upgrade                  'Upgrade Packages' \
+      all                      'APT+PIP+PPA+REPO+DEB=All' \
+      repo                     'Add Repositories' \
+      ppas                     'Add PPAs' \
+      purge                    'Purge not required packages' \
+      apps                     'Install Packages' \
+      debs                     'Install DEB packages' \
+      pip2                     'Install Python 2 packages via pip' \
+      pip3                     'Install Python 3 packages via pip3' \
+      bin                      'Download & Install Static Binaries' \
+      repo_rst                 'Reset Repositories for cleanup' \
+      ppa_rst                  'Purge PPAs' \
+      snaps                    'Install snap packages' \
+      gnome_shell_extensions   'Manage GNOME Shell Extensions'
+      logdel                   'Delete Script logs' \
       3>&1 1>&2 2>&3)
 
     whiptail_exitstatus=$?
@@ -2629,73 +2744,78 @@ function _process_menu
     if [ $whiptail_exitstatus = 0 ]; then
       _log_debug "Whiptail Choice is: $task"
       case $task in
-      update)     _show_confirmation_dialog_for_tasks \
-                  "Update APT index" \
-                  "Update Repositories index/metadata?" \
-                  "update_repos"
-                  ;;
-      upgrade)    _show_confirmation_dialog_for_tasks \
-                  "Upgrade Packages" \
-                  "This will upgrade all installed packages to the latest version.\n\nContinue?"
-                  "upgrade_apps"
-                  ;;
-      ppas)       _show_confirmation_dialog_for_tasks "Add Additional PPAs" \
-                  "This will add PPAs specified in config file.\n\nWould you like to continue?" \
-                  "add_ppas"
-                  ;;
-      repo)       _show_confirmation_dialog_for_tasks "Add Additional Repositories" \
-                  "Adding additional repositories is set as follows.\n Google Chrome & Google Earth : $add_google_repo,\n Google Cloud SDK : $add_googlecloud_repo\n GCSFUSE : $add_gscfuse_repo \nVisual Studio Code : $add_vscode_repo\n Docker : $add_docker_repo\n Insync : $add_insync_repo\n Spotify : $add_spotify_repo\n Wine-HQ : $add_winehq_repo\n Skype : $add_skype_repo\n Signal Desktop : $add_signal_repo.\n Shall I do it?" \
-                  "add_repositories"
-                  ;;
-      apps)       _show_confirmation_dialog_for_tasks \
-                  "Install Apps" \
-                  "I can Install the packages listed in lists files.\nNo checks are being made on the validity of the list.\n\nShall I do it?" \
-                  "install_apps"
-                  ;;
-      repo_rst)   _show_confirmation_dialog_for_tasks \
-                  "Remove External Repositories" \
-                  "I can remove External Repositories added and PPAs in the ppa.list. Apps installed via ppa will be reverted to original versions/uninstalled.\n\nShall I do it for you?" \
-                  "disable_external_repos"
-                  ;;
-      ppa_rst)    _show_confirmation_dialog_for_tasks "Purge PPAs is ppa.list or mentioned in config."\
-                  "PPAs listed in ppa.list or under YAML key config.ppa will be purged.\nhis will install ppa-purge on your system.\n\n Continue"
-                  "purge_ppa"
-                  ;;
-      purge)      _show_confirmation_dialog_for_tasks \
-                  "Purge Unwanted Packages" \
-                  "Shall I Purge Unwanted packages mentioned in purge.list?" \
-                  "purge_not_required"
-                  ;;
-      all)        _show_confirmation_dialog_for_tasks \
-                  "All In One" "This task will do the following.\nUpdate Repositories\nUpgrade Packages\nAdd Repositories and PPAs\nInstall apps from List\nPurge Unwanted Packages\n\nContinue?" \
-                  "all_in_one"
-                  ;;
-      debs)       _show_confirmation_dialog_for_tasks \
-                  "Download & Install DEB files" "DEB Files in the list deb-files.list will be Download and installed. Proceed with the task?" \
-                  "install_debs"
-                  ;;
-      pip2)       _show_confirmation_dialog_for_tasks \
-                  "Install Python2 packages" "Python packaes for Python 2 mentioned in pip.list will be installed via pip. If necessary python-pip package will be installed from apt. \n\nProceed?" \
-                  "install_pip_packages_2"
-                  ;;
-      pip3)       _show_confirmation_dialog_for_tasks \
-                  "Install Python3 packages" \
-                  "Python packaes for Python 3 listed in pip3.list will be installed via pip. If necessary python3-pip package will be installed from apt.\n\nProceed?" \
-                  "install_pip_packages_3"
-                  ;;
-      bin)        _show_confirmation_dialog_for_tasks \
-                  "Install Static Binaries" \
-                  "Download & Install binaries listed in bin.list or config.install.binaries?" \
-                  "install_binaries"
-                  ;;
-      snaps)     _show_confirmation_dialog_for_tasks \
-                  "Install Snap Packages" \
-                  "Download & Install binaries listed inconfig.install.snaps?" \
-                  "install_snaps"
-                  ;;
-      log)        _log_debug "Delete log selected"
-                  delete_log_file;
-                  ;;
+      update)                     _show_confirmation_dialog_for_tasks \
+                                  "Update APT index" \
+                                  "Update Repositories index/metadata?" \
+                                  "update_repos"
+                                  ;;
+      upgrade)                    _show_confirmation_dialog_for_tasks \
+                                  "Upgrade Packages" \
+                                  "This will upgrade all installed packages to the latest version.\n\nContinue?"
+                                  "upgrade_apps"
+                                  ;;
+      ppas)                       _show_confirmation_dialog_for_tasks "Add Additional PPAs" \
+                                  "This will add PPAs specified in config file.\n\nWould you like to continue?" \
+                                  "add_ppas"
+                                  ;;
+      repo)                       _show_confirmation_dialog_for_tasks "Add Additional Repositories" \
+                                  "Adding additional repositories is set as follows.\n Google Chrome & Google Earth : $add_google_repo,\n Google Cloud SDK : $add_googlecloud_repo\n GCSFUSE : $add_gscfuse_repo \nVisual Studio Code : $add_vscode_repo\n Docker : $add_docker_repo\n Insync : $add_insync_repo\n Spotify : $add_spotify_repo\n Wine-HQ : $add_winehq_repo\n Skype : $add_skype_repo\n Signal Desktop : $add_signal_repo.\n Shall I do it?" \
+                                  "add_repositories"
+                                  ;;
+      apps)                       _show_confirmation_dialog_for_tasks \
+                                  "Install Apps" \
+                                  "I can Install the packages listed in lists files.\nNo checks are being made on the validity of the list.\n\nShall I do it?" \
+                                  "install_apps"
+                                  ;;
+      repo_rst)                   _show_confirmation_dialog_for_tasks \
+                                  "Remove External Repositories" \
+                                  "I can remove External Repositories added and PPAs in the ppa.list. Apps installed via ppa will be reverted to original versions/uninstalled.\n\nShall I do it for you?" \
+                                  "disable_external_repos"
+                                  ;;
+      ppa_rst)                    _show_confirmation_dialog_for_tasks "Purge PPAs is ppa.list or mentioned in config."\
+                                  "PPAs listed in ppa.list or under YAML key config.ppa will be purged.\nhis will install ppa-purge on your system.\n\n Continue"
+                                  "purge_ppa"
+                                  ;;
+      purge)                      _show_confirmation_dialog_for_tasks \
+                                  "Purge Unwanted Packages" \
+                                  "Shall I Purge Unwanted packages mentioned in purge.list?" \
+                                  "purge_not_required"
+                                  ;;
+      all)                        _show_confirmation_dialog_for_tasks \
+                                  "All In One" "This task will do the following.\nUpdate Repositories\nUpgrade Packages\nAdd Repositories and PPAs\nInstall apps from List\nPurge Unwanted Packages\n\nContinue?" \
+                                  "all_in_one"
+                                  ;;
+      debs)                       _show_confirmation_dialog_for_tasks \
+                                  "Download & Install DEB files" "DEB Files in the list deb-files.list will be Download and installed. Proceed with the task?" \
+                                  "install_debs"
+                                  ;;
+      pip2)                       _show_confirmation_dialog_for_tasks \
+                                  "Install Python2 packages" "Python packaes for Python 2 mentioned in pip.list will be installed via pip. If necessary python-pip package will be installed from apt. \n\nProceed?" \
+                                  "install_pip_packages_2"
+                                  ;;
+      pip3)                       _show_confirmation_dialog_for_tasks \
+                                  "Install Python3 packages" \
+                                  "Python packaes for Python 3 listed in pip3.list will be installed via pip. If necessary python3-pip package will be installed from apt.\n\nProceed?" \
+                                  "install_pip_packages_3"
+                                  ;;
+      bin)                        _show_confirmation_dialog_for_tasks \
+                                  "Install Static Binaries" \
+                                  "Download & Install binaries listed in bin.list or config.install.binaries?" \
+                                  "install_binaries"
+                                  ;;
+      snaps)                      _show_confirmation_dialog_for_tasks \
+                                  "Install Snap Packages" \
+                                  "Download & Install binaries listed inconfig.install.snaps?" \
+                                  "install_snaps"
+                                  ;;
+      gnome_shell_extensions)     _show_confirmation_dialog_for_tasks \
+                                  "Manage GNOME Shell Extensions" \
+                                  "Manage GNOME Shell Extensions as listed inconfig.gnome_shell_extensions?" \
+                                  "manage_gnome_shell_extensions"
+                                  ;;
+      log)                        _log_debug "Delete log selected"
+                                  delete_log_file;
+                                  ;;
     esac
     else
       _log_debug "Whiptail Exit code : $whiptail_exitstatus"
@@ -2984,7 +3104,7 @@ function main()
 
 
   # Initialize variables and checks
-  local after_effects_core_dependencies=(wget lsb_release whiptail ping ps grep cut tr)
+  local after_effects_core_dependencies=(wget lsb_release whiptail ping ps grep cut tr git)
   _check_dependencies "${after_effects_core_dependencies[@]}"
 
   _init_print_basic_info;
@@ -3052,6 +3172,7 @@ function main()
     _autopilot_check_task_flag_and_run "$ae_task_purge" "purge_not_required"
     _autopilot_check_task_flag_and_run "$ae_task_bin" "install_binaries"
     _autopilot_check_task_flag_and_run "$ae_task_snaps" "install_snaps"
+    _autopilot_check_task_flag_and_run "$ae_task_manage_gnome_shell_extensions" "manage_gnome_shell_extensions"
   else
   _process_menu;
   #_log_and_show "DEBUG: Options Processed"
