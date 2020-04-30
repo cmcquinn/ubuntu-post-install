@@ -74,7 +74,6 @@ config:
         - gnome-tweak-tool
         - kicad
         - kicad-libraries
-        - gnome-shell-extension-prefs
         - neofetch
 
       # Packages supplied by external repositories & PPAs
