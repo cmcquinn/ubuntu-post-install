@@ -12,13 +12,14 @@ config:
     # individual repos flags are mentioned under config.add_repo key
     repo: true
     # Add PPAs
-    ppa: true
+    ppa: false
     # APT Packages
     apt: true
     # Whether to purge packages mentioned in config.purge key
     purge: false
     debs: true
     snaps: true
+    gnome_shell_extensions: true
   # Repository Flags
   add_repo:
     skype: true
@@ -30,9 +31,6 @@ config:
     purge_enabled: true
     preserve_debs: true
 
-  # PPA List
-  ppa:
-    - ppa:dawidd0811/neofetch
   # Install components
   # APT Packages, Python Modules, Debian packages
   install:
@@ -78,17 +76,27 @@ config:
         - kicad
         - kicad-libraries
         - gnome-shell-extension-prefs
+        - neofetch
 
       # Packages supplied by external repositories & PPAs
       # Dont Mix packages provided by distribution and PPAs
       # Sometimes external repos and ppas fail, so better isolate it.
       external:
         - google-chrome-stable
-        - neofetch
-        - skype
         - code
-    debian-_packages:
+    debian_packages:
       - https://zoom.us/client/latest/zoom_amd64.deb,zoom_amd64.deb
     snaps:
       classic:
         - slack
+        - skype
+  # GNOME Shell Extensions
+  gnome_shell_extensions:
+    # Extensions to install. Format: github-url,extension-UUID
+    install:
+      - https://github.com/dmo60/CoverflowAltTab.git,CoverflowAltTab@dmo60.de
+      - https://github.com/kgshank/gse-sound-output-device-chooser.git,sound-output-device-chooser@kgshank.net
+    # Extensions to disable. Format: extension-UUID
+    disable:
+      - ubuntu-dock@ubuntu.com
+      - ubuntu-appindicators@ubuntu.com
