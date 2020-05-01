@@ -57,7 +57,6 @@ config:
         - bison
         - flex
         - default-jdk
-        - pkg-config-arm-linux-gnueabihf
         - gcc-arm-linux-gnueabihf
         - pkg-config
 	      - docker.io
