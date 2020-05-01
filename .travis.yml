@@ -22,9 +22,9 @@ before_deploy:
 - source ./build/export-travis-tag-message.sh
 - ./build/set-git-config.sh
 jobs:
+  fast_finish: true
   allow_failures:
-  - env: TEST_ENV="Focal-Docker-ARM64"
-  - env: TEST_ENV="Debian11-Docker"
+  - if: env(TEST_ENV) IN ("Focal-Docker-ARM64","Debian11-Docker")
 
   include:
   - stage: Shellcheck
