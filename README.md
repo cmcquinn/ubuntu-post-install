@@ -13,24 +13,9 @@ before trying out.
 
 ## How to use this
 
-Install your choice of Ubuntu/Debian/Mint or its derivative as you would
+Install your choice of Ubuntu/Debian/Mint or its derivative as you would, and install `git`.
 
 ### Step 1: Get the script
-
-#### Without Git
-
-Run this in Terminal
-
-```console
- wget -q https://ae.prasadt.com/get -O - | bash
-```
-
-> URL redirects to file with last known good commit ![commit][commit] on GitHub. It is cached & proxies to GitHub at CDN level. If you are paranoid, use git.
-If you wish to use master branch pass `--master` or `-m` as an argument. Eg: `wget -q https://ae.prasadt.com/get -O - | bash -s --master`
-
-#### With Git
-
-If you already have git on your system, you can use,
 
 ```console
 git clone https://github.com/cmcquinn/ubuntu-post-install.git && cd ubuntu-post-install
