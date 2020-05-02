@@ -2683,7 +2683,7 @@ function install_gems()
 
   # check for gem and install it if necessary
   _log_debug "Checking for gem..."
-  if [[ -z $(which gem) ]]; then
+  if [[ -z $(command -v gem) ]]; then
     _log_warn "${_gem} gem tool not found..."
     _log_warn "${_installing} Installing gem..."
     apt-get -q -y install rubygems |& _add_timestamp_to_logs "${_apt_logs}"
