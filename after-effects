@@ -91,6 +91,7 @@ function _init_printf_variables()
     readonly                  _list="[  Cleaned List ]"
     readonly                  _snap="[    Snap PKG   ]"
     readonly _gnome_shell_extension="[  GNOME Shell  ]"
+    readonly                   _gem="[   Ruby Gem    ]"
     readonly               _success="[    Success    ]"
     #readonly           _falg="[     Flag      ]"
 
@@ -1098,6 +1099,9 @@ function _set_yaml_config()
     # Manage GNOME Shell Extensions
     _check_bool "ae_task_manage_gnome_shell_extensions" "${config__tasks__gnome_shell_extensions[0]}"
 
+    # Install Ruby Gems
+    _check_bool "ae_task_gems" "${config__tasks__gems[0]}"
+
     if [[ ${bool_hide_config} != "true" ]] && [[ $AE_DEBUG -lt 1 ]]; then
       _line_fill
       printf "${_table} %-25s | %-10s |\n" "Repository" "Enabled"
@@ -1136,6 +1140,7 @@ function _set_yaml_config()
         printf "${_rtasks} %-25s | %-10s |\n" "Static Binaries" "$ae_task_bin"
         printf "${_rtasks} %-25s | %-10s |\n" "Snap Packages" "$ae_task_snaps"
         printf "${_rtasks} %-25s | %-10s |\n" "GNOME Shell Extensions" "$ae_task_manage_gnome_shell_extensions"
+        printf "${_rtasks} %-25s | %-10s |\n" "Ruby Gems" "$ae_task_gems"
         _line_fill;
       fi
     else
@@ -1170,6 +1175,7 @@ function _set_yaml_config()
       _log_debug "Static Binaries          : $ae_task_bin"
       _log_debug "Snap Packages            : $ae_task_snaps"
       _log_debug "GNOME Shell Extensions   : $ae_task_manage_gnome_shell_extensions"
+      _log_debug "Ruby Gems                : $ae_task_gems"
       _log_debug "--------  END CONFIG ----------"
     fi
     #################################################################################
@@ -1261,6 +1267,11 @@ function _set_yaml_config()
     #--------------------------------------------------------------------------------
     declare -gar parsed_gnome_shell_extensions_install=("${config__gnome_shell_extensions__install_[@]}")
     declare -gar parsed_gnome_shell_extensions_disable=("${config__gnome_shell_extensions__disable_[@]}")
+
+    #--------------------------------------------------------------------------------
+    #                             Ruby Gems
+    #--------------------------------------------------------------------------------
+    declare -gar parsed_ruby_gems=("${config__install__gems_[@]}")
  fi
 
   {
@@ -2664,6 +2675,61 @@ function manage_gnome_shell_extensions()
   _disable_gnome_shell_extensions
 }
 
+function install_gems()
+{
+  local index gem_info
+  local exit_status
+  _log_debug "Option: Install Ruby Gems, Function name: install_gems"
+
+  # check for gem and install it if necessary
+  _log_debug "Checking for gem..."
+  if [[ -z $(which gem) ]]; then
+    _log_warn "${_gem} gem tool not found..."
+    _log_warn "${_installing} Installing gem..."
+    apt-get -q -y install rubygems |& _add_timestamp_to_logs "${_apt_logs}"
+    exit_status=$?
+    # shellcheck disable=SC2181
+    if [ "$exit_status" = "0" ]; then
+      _log_success "${_gem} Installed gem $(gem --version) successfully."
+    else
+      _log_warn "${_oh_no} Some error occurred while installing $index."
+    fi
+  else
+    _log_success "${_gem} gem $(gem --version)"
+  fi
+
+  for index in "${parsed_ruby_gems[@]}"; do
+    _log_debug "$index"
+    _log_and_show "${_gem} Installing $index"
+
+    # Check if simulate is true
+    if [ "$simulate_apt_install" == "true" ]; then
+      _log_warn "${_simulate} Running gem search!!"
+      _log_and_show "${_gem} $index..."
+      gem_info=$(gem search -eq "$index")
+      if [[ -z $gem_info ]]; then
+        _log_error "${_gem} $index not found"
+        exit_status=1
+      else
+        _log_success "${_gem} Found $gem_info"
+        exit_status=0
+      fi
+    else
+      gem install "$index" -i
+      exit_status=$?
+    fi
+
+    # shellcheck disable=SC2181
+    if [ "$exit_status" = "0" ]; then
+      _log_success "${_gem} Installed $gem_info successfully."
+    else
+      _log_warn "${_oh_no} Some error occurred while installing $index."
+    fi
+  done
+
+  _line_fill >> "$log_file"
+}
+
 
 function _autopilot_check_task_flag_and_run()
 {
@@ -2735,7 +2801,8 @@ function _process_menu
       repo_rst                 'Reset Repositories for cleanup' \
       ppa_rst                  'Purge PPAs' \
       snaps                    'Install snap packages' \
-      gnome_shell_extensions   'Manage GNOME Shell Extensions'
+      gnome_shell_extensions   'Manage GNOME Shell Extensions' \
+      gems                     'Install Ruby Gems' \
       logdel                   'Delete Script logs' \
       3>&1 1>&2 2>&3)
 
@@ -2805,13 +2872,18 @@ function _process_menu
                                   ;;
       snaps)                      _show_confirmation_dialog_for_tasks \
                                   "Install Snap Packages" \
-                                  "Download & Install binaries listed inconfig.install.snaps?" \
+                                  "Download & Install binaries listed in config.install.snaps?" \
                                   "install_snaps"
                                   ;;
       gnome_shell_extensions)     _show_confirmation_dialog_for_tasks \
                                   "Manage GNOME Shell Extensions" \
-                                  "Manage GNOME Shell Extensions as listed inconfig.gnome_shell_extensions?" \
+                                  "Manage GNOME Shell Extensions as listed in config.gnome_shell_extensions?" \
                                   "manage_gnome_shell_extensions"
+                                  ;;
+      gems)                       _show_confirmation_dialog_for_tasks \
+                                  "Install Ruby Gems" \
+                                  "Install Ruby Gems as listed in config.gems?" \
+                                  "install_gems"
                                   ;;
       log)                        _log_debug "Delete log selected"
                                   delete_log_file;
@@ -3173,6 +3245,7 @@ function main()
     _autopilot_check_task_flag_and_run "$ae_task_bin" "install_binaries"
     _autopilot_check_task_flag_and_run "$ae_task_snaps" "install_snaps"
     _autopilot_check_task_flag_and_run "$ae_task_manage_gnome_shell_extensions" "manage_gnome_shell_extensions"
+    _autopilot_check_task_flag_and_run "$ae_task_gems" "install_gems"
   else
   _process_menu;
   #_log_and_show "DEBUG: Options Processed"

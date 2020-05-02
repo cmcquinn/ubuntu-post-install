@@ -20,6 +20,7 @@ config:
     debs: true
     snaps: true
     gnome_shell_extensions: true
+    gems: true
   # Repository Flags
   add_repo:
     skype: true
@@ -52,7 +53,6 @@ config:
         - git
         - multistrap
         - build-essential
-        - ruby-full
         - clang-format
         - bison
         - flex
@@ -87,6 +87,9 @@ config:
       classic:
         - slack
         - skype
+    gems:
+      - travis
+      - travis-conditions
   # GNOME Shell Extensions
   gnome_shell_extensions:
     # Extensions to install. Format: github-url,extension-UUID
