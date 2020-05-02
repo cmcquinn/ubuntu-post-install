@@ -30,7 +30,7 @@ config:
   flags:
   # Simulate flag will never be overridden by remote config.
     purge_enabled: true
-    preserve_debs: true
+    preserve_debs: false
 
   # Install components
   # APT Packages, Python Modules, Debian packages
@@ -59,9 +59,13 @@ config:
         - default-jdk
         - gcc-arm-linux-gnueabihf
         - pkg-config
-	      - docker.io
+        - docker.io
         - shellcheck
         - python3-pip
+        - pylint
+        - sqlite3
+        - sqlitebrowser
+        - binwalk
 
       # Everything Else
       other:
