@@ -2767,6 +2767,8 @@ function all_in_one()
   purge_not_required;
   install_binaries;
   install_snaps;
+  manage_gnome_shell_extensions;
+  install_gems;
   _line_fill;
   set_default;
 }
@@ -2882,7 +2884,7 @@ function _process_menu
                                   ;;
       gems)                       _show_confirmation_dialog_for_tasks \
                                   "Install Ruby Gems" \
-                                  "Install Ruby Gems as listed in config.gems?" \
+                                  "Install Ruby Gems as listed in config.install.gems?" \
                                   "install_gems"
                                   ;;
       log)                        _log_debug "Delete log selected"
