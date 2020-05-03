@@ -2686,7 +2686,7 @@ function install_gems()
   if [[ -z $(command -v gem) ]]; then
     _log_warn "${_gem} gem tool not found..."
     _log_warn "${_installing} Installing gem..."
-    apt-get -q -y install rubygems |& _add_timestamp_to_logs "${_apt_logs}"
+    apt-get -q -y install rubygems ruby-dev |& _add_timestamp_to_logs "${_apt_logs}"
     exit_status=$?
     # shellcheck disable=SC2181
     if [ "$exit_status" = "0" ]; then
